@@ -24,7 +24,6 @@ namespace Refactoring_Exemple
 
         public string Statement()
         {
-            double totalAmount = 0;
             int frequentRenterPoints = 0;
             List<Rental> rentals = _rentals;
             string result = "Rental Record for " + GetName() + "\n";
@@ -36,13 +35,25 @@ namespace Refactoring_Exemple
                 //show figures for this rental
                 result += "\t" + each.GetMovie().GetTitle() + "\t" +
                           each.GetCharge() + "\n";
-                totalAmount += each.GetCharge();
             }
 
             //add footer lines
-            result += "Amount owed is " + totalAmount + "\n";
+            result += "Amount owed is " + GetTotalCharge() + "\n";
             result += "You earned " + frequentRenterPoints +
                       " frequent renter points";
+
+            return result;
+        }
+
+        private double GetTotalCharge()
+        {
+            double result = 0;
+            List<Rental> rentals = _rentals;
+
+            foreach (var each in rentals)
+            {
+                result += each.GetCharge();
+            }
 
             return result;
         }
