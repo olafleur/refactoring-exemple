@@ -31,12 +31,7 @@ namespace Refactoring_Exemple
 
             foreach (var each in rentals)
             {
-                //add frequent renters points
-                frequentRenterPoints++;
-                //add bonus for a tow day new release rental
-                if ((each.GetMovie().GetPriceCode() == Movie.NewRelease) &&
-                    each.GetDaysRented() > 1)
-                    frequentRenterPoints++;
+                frequentRenterPoints += each.GetFrequentRenterPoints();
 
                 //show figures for this rental
                 result += "\t" + each.GetMovie().GetTitle() + "\t" +
