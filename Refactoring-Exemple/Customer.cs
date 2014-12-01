@@ -34,7 +34,7 @@ namespace Refactoring_Exemple
                 double thisAmount = 0;
 
                 //determine amounts for each line
-                thisAmount = AmountFor(each);
+                thisAmount = each.GetCharge();
 
                 //add frequent renters points
                 frequentRenterPoints++;
@@ -55,11 +55,6 @@ namespace Refactoring_Exemple
                       " frequent renter points";
 
             return result;
-        }
-
-        private double AmountFor(Rental aRental)
-        {
-            return aRental.GetCharge();
         }
     }
 }
