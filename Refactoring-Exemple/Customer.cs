@@ -34,24 +34,7 @@ namespace Refactoring_Exemple
                 double thisAmount = 0;
 
                 //determine amounts for each line
-                switch (each.GetMovie().GetPriceCode())
-                {
-                    case Movie.Regular:
-                        thisAmount += 2;
-                        if (each.GetDaysRented() > 2)
-                        {
-                            thisAmount += (each.GetDaysRented() - 2)*1.5;
-                        }
-                        break;
-                    case Movie.NewRelease:
-                        thisAmount += each.GetDaysRented()*3;
-                        break;
-                    case Movie.Childrens:
-                        thisAmount += 1.5;
-                        if (each.GetDaysRented() > 3)
-                            thisAmount += (each.GetDaysRented() - 3)*1.5;
-                        break;
-                }
+                thisAmount = AmountFor(each);
 
                 //add frequent renters points
                 frequentRenterPoints++;
@@ -72,6 +55,30 @@ namespace Refactoring_Exemple
                       " frequent renter points";
 
             return result;
+        }
+
+        private double AmountFor(Rental each)
+        {
+            double thisAmount = 0;
+            switch (each.GetMovie().GetPriceCode())
+            {
+                case Movie.Regular:
+                    thisAmount += 2;
+                    if (each.GetDaysRented() > 2)
+                    {
+                        thisAmount += (each.GetDaysRented() - 2)*1.5;
+                    }
+                    break;
+                case Movie.NewRelease:
+                    thisAmount += each.GetDaysRented()*3;
+                    break;
+                case Movie.Childrens:
+                    thisAmount += 1.5;
+                    if (each.GetDaysRented() > 3)
+                        thisAmount += (each.GetDaysRented() - 3)*1.5;
+                    break;
+            }
+            return thisAmount;
         }
     }
 }
