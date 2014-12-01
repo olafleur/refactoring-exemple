@@ -31,10 +31,8 @@ namespace Refactoring_Exemple
 
             foreach (var each in rentals)
             {
-                double thisAmount = 0;
-
                 //determine amounts for each line
-                thisAmount = each.GetCharge();
+                var thisAmount = each.GetCharge();
 
                 //add frequent renters points
                 frequentRenterPoints++;
