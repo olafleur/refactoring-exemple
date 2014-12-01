@@ -31,9 +31,6 @@ namespace Refactoring_Exemple
 
             foreach (var each in rentals)
             {
-                //determine amounts for each line
-                var thisAmount = each.GetCharge();
-
                 //add frequent renters points
                 frequentRenterPoints++;
                 //add bonus for a tow day new release rental
@@ -43,8 +40,8 @@ namespace Refactoring_Exemple
 
                 //show figures for this rental
                 result += "\t" + each.GetMovie().GetTitle() + "\t" +
-                          thisAmount + "\n";
-                totalAmount += thisAmount;
+                          each.GetCharge() + "\n";
+                totalAmount += each.GetCharge();
             }
 
             //add footer lines
