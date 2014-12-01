@@ -52,14 +52,7 @@ namespace Refactoring_Exemple
 
         public int GetFrequentRenterPoints(int daysRented)
         {
-            if ((GetPriceCode() == Movie.NewRelease) && daysRented > 1)
-            {
-                return 2;
-            }
-            else
-            {
-                return 1;
-            }
+            return _price.GetFrequentRenterPoints(daysRented);
         }
     }
 }

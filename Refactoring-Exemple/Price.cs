@@ -11,6 +11,11 @@ namespace Refactoring_Exemple
         public abstract int GetPriceCode();
 
         public abstract double GetCharge(int daysRented);
+
+        public virtual int GetFrequentRenterPoints(int daysRented)
+        {
+            return 1;
+        }
     }
 
     class ChildrensPrice : Price
@@ -43,6 +48,11 @@ namespace Refactoring_Exemple
         public override double GetCharge(int daysRented)
         {
             return daysRented*3;
+        }
+
+        public override int GetFrequentRenterPoints(int daysRented)
+        {
+            return (daysRented > 1) ? 2 : 1;
         }
     }
 
