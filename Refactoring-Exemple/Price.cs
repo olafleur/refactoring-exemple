@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Refactoring_Exemple
+﻿namespace Refactoring_Exemple
 {
     abstract class Price
     {
@@ -27,7 +21,7 @@ namespace Refactoring_Exemple
 
         public override double GetCharge(int daysRented)
         {
-            double result = 1.5;
+            var result = 1.5;
 
             if (daysRented > 3)
             {

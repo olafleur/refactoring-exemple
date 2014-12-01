@@ -4,9 +4,9 @@ namespace Refactoring_Exemple
 {
     class Movie
     {
-        public const int Childrens = 2;
         public const int Regular = 0;
         public const int NewRelease = 1;
+        public const int Childrens = 2;
 
         private readonly string _title;
         private Price _price;

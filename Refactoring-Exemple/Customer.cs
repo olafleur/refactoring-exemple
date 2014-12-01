@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Refactoring_Exemple
 {
@@ -24,17 +25,14 @@ namespace Refactoring_Exemple
 
         public string Statement()
         {
-            List<Rental> rentals = _rentals;
-            string result = "Rental Record for " + GetName() + "\n";
+            var result = "Rental Record for " + GetName() + "\n";
 
-            foreach (var each in rentals)
+            foreach (var each in _rentals)
             {
-                //show figures for this rental
                 result += "\t" + each.GetMovie().GetTitle() + "\t" +
                           each.GetCharge() + "\n";
             }
 
-            //add footer lines
             result += "Amount owed is " + GetTotalCharge() + "\n";
             result += "You earned " + GetTotalFrequentRenterPoints() +
                       " frequent renter points";
@@ -44,27 +42,12 @@ namespace Refactoring_Exemple
 
         private double GetTotalCharge()
         {
-            double result = 0;
-            List<Rental> rentals = _rentals;
-
-            foreach (var each in rentals)
-            {
-                result += each.GetCharge();
-            }
-
-            return result;
+            return _rentals.Sum(each => each.GetCharge());
         }
 
         private int GetTotalFrequentRenterPoints()
         {
-            int result = 0;
-
-            foreach (var each in _rentals)
-            {
-                result += each.GetFrequentRenterPoints();
-            }
-
-            return result;
+            return _rentals.Sum(each => each.GetFrequentRenterPoints());
         }
     }
 }
