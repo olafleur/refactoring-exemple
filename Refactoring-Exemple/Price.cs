@@ -10,30 +10,7 @@ namespace Refactoring_Exemple
     {
         public abstract int GetPriceCode();
 
-        public double GetCharge(int daysRented)
-        {
-            double result = 0;
-            switch (GetPriceCode())
-            {
-                case Movie.Regular:
-                    result += 2;
-                    if (daysRented > 2)
-                    {
-                        result += (daysRented - 2) * 1.5;
-                    }
-                    break;
-                case Movie.NewRelease:
-                    result += daysRented * 3;
-                    break;
-                case Movie.Childrens:
-                    result += 1.5;
-                    if (daysRented > 3)
-                        result += (daysRented - 3) * 1.5;
-                    break;
-            }
-
-            return result;
-        }
+        public abstract double GetCharge(int daysRented);
     }
 
     class ChildrensPrice : Price
@@ -41,6 +18,18 @@ namespace Refactoring_Exemple
         public override int GetPriceCode()
         {
             return Movie.Childrens;
+        }
+
+        public override double GetCharge(int daysRented)
+        {
+            double result = 1.5;
+
+            if (daysRented > 3)
+            {
+                result += (daysRented - 3)*1.5;
+            }
+
+            return result;
         }
     }
 
@@ -50,6 +39,11 @@ namespace Refactoring_Exemple
         {
             return Movie.NewRelease;
         }
+
+        public override double GetCharge(int daysRented)
+        {
+            return daysRented*3;
+        }
     }
 
     class RegularPrice : Price
@@ -57,6 +51,18 @@ namespace Refactoring_Exemple
         public override int GetPriceCode()
         {
             return Movie.Regular;
+        }
+
+        public override double GetCharge(int daysRented)
+        {
+            double result = 2;
+
+            if (daysRented > 2)
+            {
+                result += (daysRented - 2)*1.5;
+            }
+
+            return result;
         }
     }
 }
