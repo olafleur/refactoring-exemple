@@ -57,25 +57,25 @@ namespace Refactoring_Exemple
             return result;
         }
 
-        private double AmountFor(Rental each)
+        private double AmountFor(Rental aRental)
         {
             double thisAmount = 0;
-            switch (each.GetMovie().GetPriceCode())
+            switch (aRental.GetMovie().GetPriceCode())
             {
                 case Movie.Regular:
                     thisAmount += 2;
-                    if (each.GetDaysRented() > 2)
+                    if (aRental.GetDaysRented() > 2)
                     {
-                        thisAmount += (each.GetDaysRented() - 2)*1.5;
+                        thisAmount += (aRental.GetDaysRented() - 2)*1.5;
                     }
                     break;
                 case Movie.NewRelease:
-                    thisAmount += each.GetDaysRented()*3;
+                    thisAmount += aRental.GetDaysRented()*3;
                     break;
                 case Movie.Childrens:
                     thisAmount += 1.5;
-                    if (each.GetDaysRented() > 3)
-                        thisAmount += (each.GetDaysRented() - 3)*1.5;
+                    if (aRental.GetDaysRented() > 3)
+                        thisAmount += (aRental.GetDaysRented() - 3)*1.5;
                     break;
             }
             return thisAmount;
